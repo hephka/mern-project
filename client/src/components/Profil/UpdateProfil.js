@@ -76,8 +76,11 @@ const UpdateProfil = () => {
                       <li key={user._id}>
                         <img src={user.picture} alt="user-pic" />
                         <h4>{user.pseudo}</h4>
-                        <div className="follow-hanhler">
-                          <FollowHandler idToFollow={user._id} />
+                        <div className="follow-handler">
+                          <FollowHandler
+                            idToFollow={user._id}
+                            type={"suggestion"}
+                          />
                         </div>
                       </li>
                     );
@@ -105,7 +108,10 @@ const UpdateProfil = () => {
                         <img src={user.picture} alt="user-pic" />
                         <h4>{user.pseudo}</h4>
                         <div className="follow-handler">
-                          <FollowHandler idToFollow={user._id} />
+                          <FollowHandler
+                            idToFollow={user._id}
+                            type={"suggestion"}
+                          />
                         </div>
                       </li>
                     );

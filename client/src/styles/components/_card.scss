@@ -246,6 +246,13 @@
           }
           span {
             transform: translateX(6px);
+            cursor: pointer;
+
+            img {
+              box-shadow: none;
+              height: 15px;
+              width: 15px;
+            }
           }
         }
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updatePost } from "../../actions/post.actions";
-import FollowHandler from "../Profil/FollowHandler";
 import { dateParser, isEmpty } from "../Utils";
-import CardComments from "./CardComments";
-import DeleteCard from "./DeleteCard";
+import FollowHandler from "../Profil/FollowHandler";
 import LikeButton from "./LikeButton";
+import { updatePost } from "../../actions/post.actions";
+import DeleteCard from "./DeleteCard";
+import CardComments from "./CardComments";
 
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +44,7 @@ const Card = ({ post }) => {
                   })
                   .join("")
               }
-              alt="user-pic"
+              alt="poster-pic"
             />
           </div>
           <div className="card-right">
@@ -80,7 +80,7 @@ const Card = ({ post }) => {
               </div>
             )}
             {post.picture && (
-              <img src={post.picture} alt="post-pic" className="card-pic" />
+              <img src={post.picture} alt="card-pic" className="card-pic" />
             )}
             {post.video && (
               <iframe

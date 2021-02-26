@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { addPosts, getPosts } from "../../actions/post.actions";
 import { isEmpty, timestampParser } from "../Utils";
 
 const NewPostForm = () => {
@@ -10,10 +11,22 @@ const NewPostForm = () => {
   const [video, setVideo] = useState("");
   const [file, setFile] = useState();
   const userData = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
 
-  const handlePicture = () => {};
+  const handlePost = async () => {
+    if (message || postPicture || video) {
+      const data = new FormData();
+      data.append("posterId", userData._id);
+      if (file) data.append("file", file);
+      data.append("video", video);
 
-  const handlePost = () => {};
+      await dispatch(addPosts(data));
+      dispatch(getPosts());
+      cancelPost();
+    } else {
+      alert("Veuillez entrer un message");
+    }
+  };
 
   const cancelPost = () => {
     setMessage("");
@@ -22,24 +35,31 @@ const NewPostForm = () => {
     setFile("");
   };
 
-  const handleVideo = () => {
-    let findLink = message.split(" ");
-    for (let i = 0; i < findLink.length; i++) {
-      if (
-        findLink[i].includes("https://www.yout") ||
-        findLink[i].includes("https//yout")
-      ) {
-        let embed = findLink[i].replace("watch?v=", "embed/");
-        setVideo(embed.split("&")[0]);
-        findLink.splice(i, 1);
-        setMessage(findLink.join(" "));
-        setPostPicture("");
-      }
-    }
+  const handlePicture = (e) => {
+    setPostPicture(URL.createObjectURL(e.target.files[0]));
+    setFile(e.target.files[0]);
+    setVideo("");
   };
 
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
+
+    const handleVideo = () => {
+      let findLink = message.split(" ");
+      for (let i = 0; i < findLink.length; i++) {
+        if (
+          findLink[i].includes("https://www.yout") ||
+          findLink[i].includes("https//yout")
+        ) {
+          let embed = findLink[i].replace("watch?v=", "embed/");
+          setVideo(embed.split("&")[0]);
+          findLink.splice(i, 1);
+          setMessage(findLink.join(" "));
+          setPostPicture("");
+        }
+      }
+    };
+    handleVideo();
   }, [userData, message, video]);
 
   return (

@@ -56,7 +56,9 @@ export default function postReducer(state = initialState, action) {
                   ...comment,
                   text: action.payload.text,
                 };
-              } else return comment;
+              } else {
+                return comment;
+              }
             }),
           };
         } else return post;

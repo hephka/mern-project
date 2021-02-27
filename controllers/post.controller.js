@@ -1,5 +1,7 @@
+const postModel = require("../models/post.model");
 const PostModel = require("../models/post.model");
 const UserModel = require("../models/user.model");
+const { uploadErrors } = require("../utils/errors.utils");
 const ObjectID = require("mongoose").Types.ObjectId;
 const fs = require("fs");
 const { promisify } = require("util");
@@ -18,9 +20,9 @@ module.exports.createPost = async (req, res) => {
   if (req.file !== null) {
     try {
       if (
-        req.file.detectedMimeType !== "image/jpg" &&
-        req.file.detectedMimeType !== "image/png" &&
-        req.file.detectedMimeType !== "image/jpeg"
+        req.file.detectedMimeType != "image/jpg" &&
+        req.file.detectedMimeType != "image/png" &&
+        req.file.detectedMimeType != "image/jpeg"
       )
         throw Error("invalid file");
 
@@ -39,7 +41,7 @@ module.exports.createPost = async (req, res) => {
     );
   }
 
-  const newPost = new PostModel({
+  const newPost = new postModel({
     posterId: req.body.posterId,
     message: req.body.message,
     picture: req.file !== null ? "./uploads/posts/" + fileName : "",
@@ -58,7 +60,7 @@ module.exports.createPost = async (req, res) => {
 
 module.exports.updatePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+    return res.status(400).send("ID unknown : " + req.params.id);
 
   const updatedRecord = {
     message: req.body.message,
@@ -77,7 +79,7 @@ module.exports.updatePost = (req, res) => {
 
 module.exports.deletePost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+    return res.status(400).send("ID unknown : " + req.params.id);
 
   PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
     if (!err) res.send(docs);
@@ -87,7 +89,7 @@ module.exports.deletePost = (req, res) => {
 
 module.exports.likePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+    return res.status(400).send("ID unknown : " + req.params.id);
 
   try {
     await PostModel.findByIdAndUpdate(
@@ -118,7 +120,7 @@ module.exports.likePost = async (req, res) => {
 
 module.exports.unlikePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+    return res.status(400).send("ID unknown : " + req.params.id);
 
   try {
     await PostModel.findByIdAndUpdate(
@@ -149,7 +151,7 @@ module.exports.unlikePost = async (req, res) => {
 
 module.exports.commentPost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+    return res.status(400).send("ID unknown : " + req.params.id);
 
   try {
     return PostModel.findByIdAndUpdate(
@@ -177,7 +179,7 @@ module.exports.commentPost = (req, res) => {
 
 module.exports.editCommentPost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+    return res.status(400).send("ID unknown : " + req.params.id);
 
   try {
     return PostModel.findById(req.params.id, (err, docs) => {
@@ -200,7 +202,7 @@ module.exports.editCommentPost = (req, res) => {
 
 module.exports.deleteCommentPost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
+    return res.status(400).send("ID unknown : " + req.params.id);
 
   try {
     return PostModel.findByIdAndUpdate(

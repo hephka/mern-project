@@ -20,9 +20,11 @@ const Home = () => {
         <Thread />
       </div>
       <div className="right-side">
-        <div className="wrapper">
-          <Trends />
-          {uid && <FriendsHint />}
+        <div className="right-side-container">
+          <div className="wrapper">
+            <Trends />
+            {uid && <FriendsHint />}
+          </div>
         </div>
       </div>
     </div>

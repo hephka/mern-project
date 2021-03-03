@@ -7,9 +7,9 @@ const { uploadErrors } = require("../utils/errors.utils");
 module.exports.uploadProfil = async (req, res) => {
   try {
     if (
-      req.file.detectedMimeType !== "image/jpg" &&
-      req.file.detectedMimeType !== "image/png" &&
-      req.file.detectedMimeType !== "image/jpeg"
+      req.file.detectedMimeType != "image/jpg" &&
+      req.file.detectedMimeType != "image/png" &&
+      req.file.detectedMimeType != "image/jpeg"
     )
       throw Error("invalid file");
 
@@ -18,7 +18,6 @@ module.exports.uploadProfil = async (req, res) => {
     const errors = uploadErrors(err);
     return res.status(201).json({ errors });
   }
-
   const fileName = req.body.name + ".jpg";
 
   await pipeline(

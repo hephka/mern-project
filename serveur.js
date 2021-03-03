@@ -18,7 +18,6 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
 };
-
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
@@ -31,7 +30,7 @@ app.get("/jwtid", requireAuth, (req, res) => {
   res.status(200).send(res.locals.user._id);
 });
 
-//routes
+// routes
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 

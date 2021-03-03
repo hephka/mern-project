@@ -16,8 +16,8 @@ const index = () => {
       <Navbar />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/profil" component={Profil} />
-        <Route path="/trending" component={Trending} />
+        <Route path="/profil" exact component={Profil} />
+        <Route path="/trending" exact component={Trending} />
         <Redirect to="/" />
       </Switch>
     </Router>

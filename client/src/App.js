@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { UidContext } from "./components/AppContext";
 import Routes from "./components/Routes";
+import { UidContext } from "./components/AppContext";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getUser } from "./actions/user.actions";
@@ -16,7 +16,9 @@ const App = () => {
         url: `${process.env.REACT_APP_API_URL}jwtid`,
         withCredentials: true,
       })
-        .then((res) => setUid(res.data))
+        .then((res) => {
+          setUid(res.data);
+        })
         .catch((err) => console.log("No token"));
     };
     fetchToken();

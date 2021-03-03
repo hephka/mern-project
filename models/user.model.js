@@ -6,15 +6,15 @@ const userSchema = new mongoose.Schema(
   {
     pseudo: {
       type: String,
-      require: true,
+      required: true,
       minLength: 3,
-      maxLength: 29,
+      maxLength: 55,
       unique: true,
       trim: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       validate: [isEmail],
       lowercase: true,
       unique: true,
@@ -22,17 +22,17 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      require: true,
+      required: true,
       max: 1024,
       minlength: 6,
-    },
-    bio: {
-      type: String,
-      max: 1024,
     },
     picture: {
       type: String,
       default: "./uploads/profil/random-user.png",
+    },
+    bio: {
+      type: String,
+      max: 1024,
     },
     followers: {
       type: [String],
@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// play function before save into DB
+// play function before save into display: 'block',
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);

@@ -11,8 +11,8 @@ const Log = (props) => {
       setSignInModal(false);
       setSignUpModal(true);
     } else if (e.target.id === "login") {
-      setSignInModal(true);
       setSignUpModal(false);
+      setSignInModal(true);
     }
   };
 

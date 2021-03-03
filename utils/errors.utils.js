@@ -4,7 +4,7 @@ module.exports.signUpErrors = (err) => {
   if (err.message.includes("pseudo"))
     errors.pseudo = "Pseudo incorrect ou déjà pris";
 
-  if (err.message.includes("emeil")) errors.email = "Email incorrect";
+  if (err.message.includes("email")) errors.email = "Email incorrect";
 
   if (err.message.includes("password"))
     errors.password = "Le mot de passe doit faire 6 caractères minimum";
@@ -33,7 +33,7 @@ module.exports.uploadErrors = (err) => {
   let errors = { format: "", maxSize: "" };
 
   if (err.message.includes("invalid file"))
-    errors.format = "Format incompatible";
+    errors.format = "Format incompatabile";
 
   if (err.message.includes("max size"))
     errors.maxSize = "Le fichier dépasse 500ko";

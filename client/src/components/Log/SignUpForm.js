@@ -41,6 +41,7 @@ const SignUpForm = () => {
         },
       })
         .then((res) => {
+          console.log(res);
           if (res.data.errors) {
             pseudoError.innerHTML = res.data.errors.pseudo;
             emailError.innerHTML = res.data.errors.email;
@@ -79,7 +80,7 @@ const SignUpForm = () => {
           <label htmlFor="email">Email</label>
           <br />
           <input
-            type="email"
+            type="text"
             name="email"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -102,7 +103,7 @@ const SignUpForm = () => {
           <br />
           <input
             type="password"
-            name="password-conf"
+            name="password"
             id="password-conf"
             onChange={(e) => setControlPassword(e.target.value)}
             value={controlPassword}
@@ -118,7 +119,7 @@ const SignUpForm = () => {
           </label>
           <div className="terms error"></div>
           <br />
-          <input type="submit" name="Valider inscription" />
+          <input type="submit" value="Valider inscription" />
         </form>
       )}
     </>

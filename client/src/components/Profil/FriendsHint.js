@@ -68,7 +68,7 @@ const FriendsHint = () => {
                   );
                 }
               }
-              return null;
+              return true;
             })}
         </ul>
       )}

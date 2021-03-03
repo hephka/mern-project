@@ -61,8 +61,8 @@ const EditDeleteComment = ({ comment, postId }) => {
             >
               <img src="./img/icons/trash.svg" alt="delete" />
             </span>
+            <input type="submit" value="Valider modification" />
           </div>
-          <input type="submit" value="Valider modification" />
         </form>
       )}
     </div>

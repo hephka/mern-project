@@ -79,7 +79,7 @@ export const updatePost = (postId, message) => {
   return (dispatch) => {
     return axios({
       method: "put",
-      url: `${process.env.REACT_APP_API_URL}api/post/` + postId,
+      url: `${process.env.REACT_APP_API_URL}api/post/${postId}`,
       data: { message },
     })
       .then((res) => {
@@ -93,7 +93,7 @@ export const deletePost = (postId) => {
   return (dispatch) => {
     return axios({
       method: "delete",
-      url: `${process.env.REACT_APP_API_URL}api/post/` + postId,
+      url: `${process.env.REACT_APP_API_URL}api/post/${postId}`,
     })
       .then((res) => {
         dispatch({ type: DELETE_POST, payload: { postId } });
@@ -106,7 +106,7 @@ export const addComment = (postId, commenterId, text, commenterPseudo) => {
   return (dispatch) => {
     return axios({
       method: "patch",
-      url: `${process.env.REACT_APP_API_URL}api/post/comment-post/` + postId,
+      url: `${process.env.REACT_APP_API_URL}api/post/comment-post/${postId}`,
       data: { commenterId, text, commenterPseudo },
     })
       .then((res) => {
@@ -120,8 +120,7 @@ export const editComment = (postId, commentId, text) => {
   return (dispatch) => {
     return axios({
       method: "patch",
-      url:
-        `${process.env.REACT_APP_API_URL}api/post/edit-comment-post/` + postId,
+      url: `${process.env.REACT_APP_API_URL}api/post/edit-comment-post/${postId}`,
       data: { commentId, text },
     })
       .then((res) => {
@@ -135,9 +134,7 @@ export const deleteComment = (postId, commentId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
-      url:
-        `${process.env.REACT_APP_API_URL}api/post/delete-comment-post/` +
-        postId,
+      url: `${process.env.REACT_APP_API_URL}api/post/delete-comment-post/${postId}`,
       data: { commentId },
     })
       .then((res) => {

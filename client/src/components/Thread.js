@@ -31,7 +31,7 @@ const Thread = () => {
   }, [loadPost, dispatch, count]);
 
   return (
-    <div className="thead-container">
+    <div className="thread-container">
       <ul>
         {!isEmpty(posts[0]) &&
           posts.map((post) => {

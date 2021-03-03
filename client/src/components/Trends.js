@@ -38,7 +38,7 @@ const Trends = () => {
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                        title={post.video}
+                        title={post._id}
                       ></iframe>
                     )}
                     {isEmpty(post.picture) && isEmpty(post.video) && (
